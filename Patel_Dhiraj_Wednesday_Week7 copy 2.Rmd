@@ -1,0 +1,346 @@
+---
+title: "Lab Assignment Wednesday"
+author: "Dhiraj Patel"
+date: "11/13/2018"
+output: html_document
+---
+
+```{r}
+#THIS IS A CODE CHUNK WITH ALL MY PRELAB CODE.  however i commented out all the plot functions so main thing in this chunk is just reading in files. 
+
+
+
+myoFrac <- function(oxypress,p50){
+  ans <- oxypress/(oxypress+p50)
+  return(ans)
+}
+
+#set up vector with oxygen pressure values like a freaking baller. 
+oxyVals <- seq(1,100)
+
+#This is my function that returns a vector of the myoglobin fraction values, i bet no one else made a  function with a for loop LOL. 
+
+makeFracVals <-function(p50){
+  myoVals<-numeric()
+  for(i in 1:length(oxyVals)){
+    myoVals[i] <- myoFrac(oxyVals[i],p50)
+  }
+  return(myoVals)
+}
+
+
+
+#plot(oxyVals,makeFracVals(2.4), xlab="pO2 mmHg",ylab="fraction of total myoglobin oxygenated",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 (#1)",col=c(3),type='o')
+
+
+
+#plot(oxyVals,makeFracVals(2.4), xlab="pO2 mmHg",ylab="fraction of total myoglobin oxygenated",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2(#2)",col=c(3),type='o')
+
+#This is not a sigmoidal curve, but rather a hyperbolic curve. 
+
+#differnet p50 Values: 1.0, 2.0, 3.0, 4.0, 5.0 
+#ADD THOSE LINES BABY. 
+# lines(oxyVals,makeFracVals(1.0),xlab="pO2 mmHg",ylab="percent saturation of myoglobin",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 & (p50=1.0) ",col=c(2),type='o')
+# lines(oxyVals,makeFracVals(2.0),xlab="pO2 mmHg",ylab="percent saturation of myoglobin",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 & (p50=2.0) ",col=c(4),type='o')
+# lines(oxyVals,makeFracVals(3.0),xlab="pO2 mmHg",ylab="percent saturation of myoglobin",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 & (p50=3.0) ",col=c(5),type='o')
+# lines(oxyVals,makeFracVals(4.0),xlab="pO2 mmHg",ylab="percent saturation of myoglobin",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 & (p50=4.0) ",col=c(6),type='o')
+# lines(oxyVals,makeFracVals(5.0),xlab="pO2 mmHg",ylab="percent saturation of myoglobin",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 & (p50=5.0) ",col=c(7),type='o')
+# 
+# legend("bottomright",legend=c("p50=1.0","p50=2.0","p50=3.0","p50=4.0","p50=5.0","p50=2.4"),fill=c(2,4,5,6,7,3),lwd=1,cex=1)
+# 
+
+#LOOK AT THAT SEXY GRAPH. As you increase the p50, you expereince a rightward shift of the curve, and myoglobin affinity is lowered.  
+
+
+
+#HEMOGLOBIN LAB PART 2:
+
+filename <- read.csv("Experimental_Data.csv")
+#filename
+
+pO2Values <- filename$data_pO2
+SaturationValues <- filename$data_Y
+
+#pO2Values
+#SaturationValues
+#NUMBER 3
+#plot(pO2Values,SaturationValues, xlab="pO2 mmHg",ylab="fraction of total myoglobin oxygenated",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 from Experimental Data File",col=c(3),type='o')
+
+
+
+filetwo <- read.csv("Temp_data_Exp.csv")
+filetwo
+
+pO2_32 <- filetwo$data_pO2_32
+Saturation32<- filetwo$data_Y_32
+
+
+pO2_35 <- filetwo$data_pO2_35
+Saturation35<- filetwo$data_Y_35
+
+pO2_38 <- filetwo$data_pO2_38
+Saturation38<- filetwo$data_Y_38
+
+pO2_41 <- filetwo$data_pO2_41
+Saturation41<- filetwo$data_Y_41
+
+pO2_44 <- filetwo$data_pO2_44
+Saturation44<- filetwo$data_Y_44
+
+pO2_47 <- filetwo$data_pO2_47
+Saturation47<- filetwo$data_Y_47
+
+pO2_52 <- filetwo$data_pO2_52
+Saturation52<- filetwo$data_Y_52
+
+# plot(pO2_32,Saturation32, xlab="pO2 mmHg",ylab="fraction of total myoglobin oxygenated",main="Fraction of Total Myoglobin Oxygenated as a Function of pO2 with Temp Data",col=c(1),type='o',xlim=c(2,99),ylim=c(2,99))
+# 
+# lines(pO2_35,Saturation35,xlab="pO2 mmHg",ylab="percent saturation of myoglobin",col=c(2),type='o')
+# 
+# lines(pO2_38,Saturation38,xlab="pO2 mmHg",ylab="percent saturation of myoglobin",col=c(3),type='o')
+# 
+# lines(pO2_41,Saturation41,xlab="pO2 mmHg",ylab="percent saturation of myoglobin",col=c(4),type='o')
+# 
+# lines(pO2_44,Saturation44,xlab="pO2 mmHg",ylab="percent saturation of myoglobin",col=c(5),type='o')
+# 
+# lines(pO2_47,Saturation47,xlab="pO2 mmHg",ylab="percent saturation of myoglobin",col=c(6),type='o')
+# 
+# lines(pO2_52,Saturation52,xlab="pO2 mmHg",ylab="percent saturation of myoglobin",col=c(7),type='o')
+# 
+# legend("bottomright",legend=c("degrees=32","degrees=35","degrees=38","degrees=41","degrees=44","degrees =47", "degrees=52"),fill=c(1,2,3,4,5,6,7),lwd=1,cex=1)
+```
+
+
+
+```{r}
+#assign pO2 values
+
+# NUMBER 1: plot experimental data and simulation run assuming independent binding. 
+
+#SIMULATION DATA EQUATION
+
+K <- (1/10) #torr ^-1 
+K1 <- (1/100)
+K2 <- (1/1000)
+K3 <- (1/10000)
+pO2values <- seq(0,105,0.01)
+
+yVal <- function(pO2,k){
+  toppart <- ((pO2*k)+(3*((pO2^2)*(k^2)))+(3*((pO2^3)*(k^3)))+((pO2^4)*(k^4)))
+  botpart <- (1+(4*(pO2*k))+(6*((pO2^2)*(k^2)))+(4*((pO2^3)*(k^3)))+((pO2^4)*(k^4)))
+  ans <- (toppart/botpart) *100
+  return(ans)
+}
+# #PLOT THE SIMULATION DATA. EQUATION THAT YOU PROGRAM AND SOLVE FOR. 
+
+plot(pO2values,yVal(pO2values,K),main="Hemoglobin Oxygen Dissociation Curve with Independent Binding",xlab="pO2 mmHg",ylab="hemoglobin saturation %",col=c(3))
+#legend("bottomright",legend=c(" "),fill=c(2,4,5,6,7,3),lwd=1,cex=1)
+
+
+#NUMBER 1: THE independent binding makes the oxygen have higher affinity, with a lower p50 value, the curve is no longer sigmoidal like the experimental data curve shows. 
+
+expFile <- read.csv("Experimental_Data.csv")
+pO2V <- expFile$data_pO2
+expYVals <- expFile$data_Y
+points(pO2V,expYVals,col=c(50))
+#legend("bottomright",legend=c("simulation data","experimental data"),fill=c(3,5),lwd=1,cex=1)
+
+
+lines(pO2Values,yVal(pO2Values,K1),col=c(2))
+lines(pO2Values,yVal(pO2Values,K2),col=c(4))
+lines(pO2Values,yVal(pO2Values,K3),col=c(5))
+
+val50 <- rep(50,554)
+print(val50)
+
+lines(val50,col=c(10))
+legend("bottomright",legend=c("k=1/10","k=1/100","k=1/1000","k=1/10000","horizontal 50% lines","experimental data"),fill=c(3,2,4,5,10,50),lwd=1,cex=1)
+#The best fit is obtained when K = 1/100, becuase it's closest to the sigmoidal curve obtained from the experimental data. However, its important to note that the curve at k=1/100 is still not sigmoidal. The independent binding does not accurately display the characteristics of experimental data, as it is not sigmoidal no matter what you change the K values to, and we know that the hemoglobin oxygen dissocation curve has to be sigmoidal. O2 binding is not independent, because we know that once one oxygen binds  to hemoglobin, the affinity for oxygen increases pertaining to the remaining three oxygen binding sites for the hemoglobin we are considering. This is a phenomenon known as positive COOPERATIVITY.  with our best fit K, the curve is still not sigmoidal it is definitely more hyperbolic, and thus does not show the cooperativity phenomenon. 
+```
+
+```{r}
+#PART 4: FULLY COOPERATIVE (SIMULTANEOUS BINDING)
+
+YPart4 <- function(pO2,p50){
+  ans <- ((pO2^4)/((pO2^4)+(p50^4)))
+  return(ans*100)
+}
+
+plot(pO2V,expYVals,main="Hemoglobin Oxygen Dissociation Curve with Simultaneous Binding",xlab="pO2 mmHg",ylab="hemoglobin saturation %",col=c(3))
+lines(pO2values,YPart4(pO2values,45),col=c(2))
+lines(pO2values,YPart4(pO2values,20),col=c(4))
+lines(pO2values,YPart4(pO2values,75),col=c(5))
+lines(pO2values,YPart4(pO2values,50),col=c(16))
+lines(pO2values,YPart4(pO2values,47),col=c(1))
+lines(val50,col=c(1))
+
+legend("bottomright",legend=c("experimental data","p50=45","p50=20","p50=75","p50=50","p50=47"),fill=c(3,2,4,5,16,1),lwd=1,cex=1)
+
+# NUMBER 4:  Here, we see that the simulation run data is also sigmoidal and almost overlaps entirely onto the experimental data curve, which is a good sign. Depending on the p50 value we chose, the curve can have a higher or lower affinity for oxygen. when you set p50 around 45 then you see a curve with similar affinity to the experimental data curve. 
+
+
+# NUMBER 5:   The best p50 is between 45 and 50, and thus i added a curve for p50=47, which is what i would say is the best p50, as it almost perfectly fits the experimental data curve that we have obtained. 
+
+
+#NUMBER 6: the shape of the plot with the best p50 = 47, is a very sigmoidal curve. Thus, we can say that the binding of O2 is near simulataneous , as the experimental data curve does not quiteee fit the different p50 value curves that we have, but gets very close to doing so. we know that o2 binding is not fully simultaneous, but rather sequential. 
+```
+
+```{r}
+#PART 5: COOPERATIVITY AND THE HILL EQUATION
+n<-4
+ypart5 <- function(pO2,p50,n){
+  ans<-((pO2^n)/((pO2^n)+(p50^n)))
+  return(ans*100)
+}
+
+plot(pO2V,expYVals,main="Hemoglobin Oxygen Dissociation Curve with Cooperative Binding",xlab="pO2 mmHg",ylab="hemoglobin saturation %",col=c(3))
+lines(pO2values,ypart5(pO2values,47,n),col=c(2))
+
+lines(pO2values,ypart5(pO2values,47,3.5),col=c(2))
+lines(pO2values,ypart5(pO2values,47,3.75),col=c(4))
+lines(pO2values,ypart5(pO2values,47,3.95),col=c(5))
+
+
+legend("bottomright",legend=c("experimental data","n=3.5","n=3.75",n="3.95"),fill=c(3,2,4,5),lwd=1,cex=1)
+
+#NUMBER 7: here, when i set p50=47, the 2 curves basically fully overlap, except for one small region of non-overlap. Both curves are sigmoidal, and show similar affinities for oxygen binding. 
+
+#NUMBER 8/9: changing n in decimal units, makes the new curves very difficult to distinguish; however, at n=3.5, it seems that we have a curve that almost entirely replicates our experimental data curve, and does so in a better manner than the other types of binding we tested. The shape of our curve with the best  fit n = 3.5, is sigmoidal, and I think that o2 binding in hemoglobin is cooperative, as we see the closest replciation of the experimental data curve here with cooperative binding, and also we have learned in class that hemoglobin binds cooperatively. so this is just a reconfirmation. 
+```
+
+
+```{r}
+#PART VI: TEMPERATURE - SENSITIVITY AND THE HILL EQUATION
+#hill equation programmed as 'ypart5'
+
+
+#NUMBER 10: 
+plot(pO2_32,Saturation32, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 32 C",col=c(1),type='o')
+lines(pO2_32,ypart5(pO2_32,25,3.25),col=c(2))
+legend("bottomright",legend=c("experimental data t=32C","n=3.25, p50=25"),fill=c(1,2),lwd=1,cex=1)
+
+
+plot(pO2_35,Saturation35, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 35 C",col=c(1),type='o')
+lines(pO2_35,ypart5(pO2_35,40,3.75),col=c(2))
+legend("bottomright",legend=c("experimental data t=35C","n=3.75, p50=40"),fill=c(1,2),lwd=1,cex=1)
+
+
+plot(pO2_38,Saturation38, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 38 C",col=c(1),type='o')
+lines(pO2_38,ypart5(pO2_38,40,3.25),col=c(2))
+legend("bottomright",legend=c("experimental data t=38C","n=3.25, p50=40"),fill=c(1,2),lwd=1,cex=1)
+
+plot(pO2_41,Saturation41, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 41 C",col=c(1),type='o')
+lines(pO2_41,ypart5(pO2_41,45,3.5),col=c(2))
+legend("bottomright",legend=c("experimental data t=41C","n=3.5, p50=45"),fill=c(1,2),lwd=1,cex=1)
+
+plot(pO2_44,Saturation44, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 44 C",col=c(1),type='o')
+lines(pO2_44,ypart5(pO2_44,50,3.5),col=c(2))
+legend("bottomright",legend=c("experimental data t=44C","n=3.5, p50=50"),fill=c(1,2),lwd=1,cex=1)
+
+plot(pO2_47,Saturation47, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 47 C",col=c(1),type='o')
+lines(pO2_47,ypart5(pO2_47,50,5.5),col=c(2))
+legend("bottomright",legend=c("experimental data t=47C","n=5.5, p50=50"),fill=c(1,2),lwd=1,cex=1)
+
+plot(pO2_52,Saturation52, xlab="pO2 mmHg",ylab="Hemoglobin Saturation",main="Hemoglobin Saturation as Function of pO2 with 52 C",col=c(1),type='o')
+lines(pO2_52,ypart5(pO2_52,55,2.25),col=c(2))
+legend("bottomright",legend=c("experimental data t=52C","n=2.25, p50=55"),fill=c(1,2),lwd=1,cex=1)
+
+
+#NUMBER 11: 
+
+newp50<-c(25,40,40,45,50,50,55)
+newN <- c(3.25,3.75,3.25,3.5,3.5,5.5,2.25)
+newTemps <- c(32,35,38,41,44,47,52)
+
+plot(newTemps,newp50,xlab="temperatures(C)",ylab="p50",main="p50 vs temperatures",col=c(3),type="o")
+mylinfit <- lm(newp50~newTemps)
+summary(mylinfit)
+abline(mylinfit,col=c(1))
+legend("bottomright",legend=c("p50 vs Temp","linearfit"),fill=c(2,1),lwd=1,cex=1)
+interceptp50 <- mylinfit$coefficients[[1]]
+slopep50 <- mylinfit$coefficients[[2]]
+r2p50 <- summary(mylinfit)$r.squared
+
+print(paste("this is the intercept for p50 v. temp",interceptp50))
+print(paste("this is the slope for p50 v temp",slopep50))
+print(paste("this is the r squared for p50 v temp",r2p50))
+
+
+#THERE IS SOME CORRELATION BETWEEN P50 AND TEMPERATURE BUT, IT IS NOT LINEAR. 
+
+
+plot(newTemps,newN,xlab="temperatures(C)",ylab="N",main="n vs temperatures",col=c(2),type="o")
+mylinfitsecond <- lm(newN~newTemps)
+summary(mylinfitsecond)
+abline(mylinfitsecond,col=c(1))
+interceptn <- mylinfitsecond$coefficients[[1]]
+slopen <- mylinfitsecond$coefficients[[2]]
+r2n <- summary(mylinfitsecond)$r.squared
+print(paste("this is the intercept for n v. temp",interceptn))
+print(paste("this is the slope for n v temp",slopen))
+print(paste("this is the r squared for n v temp",r2n))
+
+#THERE IS A WEIRD POINT AT THE END OF THIS CURVE WITH TEMP AND N BECAUSE THE DATA PROBLEM IS GOOFY, A PROTEIN MAY HAVE DENATURED OR SOMETHING. N , in real life does not change, and so it explains why out curve is not a perfect shape. 
+legend("bottomright",legend=c("N vs Temp","linearfit"),fill=c(2,1),lwd=1,cex=1)
+
+
+
+```
+
+```{r}
+#part vii: The Bohr Effect
+
+ph<-c(7.61,7.36,7.15,6.92)
+p50 <- c(19.1,23.4,30.9,40.7)
+
+plot(p50,ph,xlab="p50",ylab="pH",main="p50 vs pH")
+phFit <- lm(ph ~ p50)
+abline(phFit,col=c(4))
+
+interceptph <- phFit$coefficients[[1]]
+slopeph <- phFit$coefficients[[2]]
+r2ph <- summary(phFit)$r.squared
+
+print(paste("this is the intercept for p50 v ph",interceptph))
+print(paste("this is the slope for p50 v ph",slopeph))
+print(paste("this is the r squared for p50 v ph",r2ph))
+
+legend("topright",legend=c("linearfit"),fill=c(4),lwd=1,cex=1)
+#this line is a relatively good fit, as it comes very close to each of the experimental data points, and showss that the experimental data closely follows the linear fit line.
+ 
+#intercept: 8.130913
+#slope: -0.03053
+#line formula: y = mx+b
+#x= (y-b)/m
+lineForm <- function(y){
+  ans<- ((y-interceptph)/slopeph)
+  return(ans)
+}
+#print(lineForm(7.3))
+
+ypart5(pO2values,lineForm(7.3),2.8)
+
+#NUMBER 17:
+pO2values<-seq(1,150)
+plot(pO2values,ypart5(pO2values,lineForm(7.61),2.8),main="hill coefficient with pH change",xlab="pO2",ylab="percent hemoglobin o2 saturation",col=c(1),type="o")
+lines(pO2values,ypart5(pO2values,lineForm(7.36),2.8),col=c(2),type="o")
+lines(pO2values,ypart5(pO2values,lineForm(7.15),2.8),col=c(3),type="o")
+lines(pO2values,ypart5(pO2values,lineForm(6.92),2.8),col=c(4),type="o")
+legend("bottomright",legend=c("ph=7.61","ph=7.36","ph=7.15","ph=6.92","myoglobin curve"),fill=c(1,2,3,4,5),lwd=1,cex=1)
+
+
+#as you decrease pH (increase acidity), there is a right shift in the dissociation curves, which implies that there is a lower affinity for oxygen as you decrease pH. the p50 value (po2 value that produces 50% saturation) becomes higher and so there is a lower affinity for oxygen. The curve becomes less and less steep as you decrease the ph. The most steep curve is at 7.61 ph and the least steep curve is at ph = 6.92. 
+abline(v=40,col=c(5))
+abline(v=100,col=c(5))
+
+#NUMBER 21: no at po2 = 100, the different in percent saturation between the different ph curves is not veryyy differnet; however, at po2 = 40, you can see large gaps between the 4 colored graphs, which shows that the percent saturation of the differnet ph curves at po2 = 40, is very differnet, which the highest ph having the most percent satruation, which makes sense becuase that graph has the highest affinity for oxygen (since it is the left-most curve). 
+#If you want to talk about loading and unloading, loading being the process by which hemoglobin binds to oxygen, and unloading for how hemoglobin unbinds to oxygen; then you can say that with a higher affinity for oxygen, loading is easier and unloading is harder because of the higher affinity. So you can say that the highest ph curve ph = 7.61 (black color), has the highest affinity for the oxygen, meaning it has the easiest loading phase and the most difficult unloading phase. On the other hand, the lowest affinity curve ph=6.92, has the lowest affinity, which means it will have the hardest loading phase but the easiest unloading phase. The data  from the handout shows that at the same po2 (40 and 100 torr both), a higher pH has a greater hemoglobin saturation because it has the higher affinity and thus the easier loading, and harder unloading phase. 
+
+#NUMBER 22: 
+
+lines(pO2values,ypart5(pO2values,2.44,2.8),col=c(5),type="o")
+
+#myoglobin maintains the o2 gradient in  muscle cells while hemoglobin maintins the po2 in plasma. Po2 refelcts the o2 dissolved in the plasma, o2 bound to hb does not contribute to Po2. myoglobin is the left most curve out of all of them, so it has the highest affinity for oxygen. hemoglobin having a lower affinity allows it easily move o2 from blood to cells of body, and myoglobin allows close handling of oxygen in the muscle cells. it makes sense that myoglobin maintains o2 gradient in muscle cells becuase you can see from the curve for myoglobin that the percent saturation of oxygen drops super fast, and so you want a molecule that gives oxygen really fast to muscle cells that need oxygen and hemoglobin does not drop it as fast and this is good because you dont want to drop oxygens in the blood really easily. 
+```
+
+
